@@ -25,7 +25,7 @@ export const getAllUsers = () => {
     }
 };
 
-export const deleteAllPosts = (payload, uuid) => {
+export const updateUser = (payload, uuid) => {
     const request = UsersService.updateUser(payload, uuid);
 
     return (dispatch) => {
