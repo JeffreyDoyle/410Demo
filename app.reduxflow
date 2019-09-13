@@ -1,0 +1,25 @@
+create flow ME;
+create flow USERS;
+create flow POSTS;
+create flow COUNTER;
+create flow MODALS;
+
+add signedIn boolean to ME;
+add users array to USERS;
+add posts array to POSTS;
+add count int to COUNTER;
+add isLoginModalOpen boolean to MODALS;
+add isSignupModalOpen boolean to MODALS;
+
+add toggle action to ME called TOGGLE_SIGNED_IN which updates ME.signedIn;
+
+add network action to USERS called GET_ALL_USERS at GET /users which updates USERS.users;
+add network action to USERS called UPDATE_USER at PUT /user/:uuid which updates USERS.users;
+
+add network action to POSTS called GET_ALL_POSTS at GET /posts which updates POSTS.posts;
+add network action to POSTS called DELETE_ALL_POSTS at DELETE /posts which updates POSTS.posts;
+
+add counter action to COUNTER called INCREMENT_COUNTER which updates COUNTER.count;
+
+add toggle action to MODALS called TOGGLE_LOGIN_MODAL_OPEN which updates MODALS.isLoginModalOpen;
+add toggle action to MODALS called TOGGLE_SIGNUP_MODAL_OPEN which updates MODALS.isSignupModalOpen;
