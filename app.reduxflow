@@ -23,3 +23,81 @@ add counter action to COUNTER called INCREMENT_COUNTER which updates COUNTER.cou
 
 add toggle action to MODALS called TOGGLE_LOGIN_MODAL_OPEN which updates MODALS.isLoginModalOpen;
 add toggle action to MODALS called TOGGLE_SIGNUP_MODAL_OPEN which updates MODALS.isSignupModalOpen;
+
+
+REVISED LANGUAGE:
+1) Types are mandatory
+2) JS type: `JS BS`
+3) Any type
+4) Action consumes a type
+COMMENT: //
+MODIFIES: >>
+SUPPORTED ACTIONS: network, toggle, counter, append
+flow FLOW_NAME: {
+    type varName >> defaultValue;
+    actionName >> varToUpdate1, varToUpdate2, ...;
+}
+
+EXAMPLE:
+flow users {
+    array users = [];
+    GET_ALL_USERS >> var1, var2;
+}
+
+
+----------
+FLOWSCRIPT
+
+string postsUrl = '/posts';
+
+action network GET_ALL_POSTS(url = postsUrl, method = GET);
+action network DELETE_ALL_POSTS(url = postsUrl, method = DELETE);
+
+string usersUrl = '/users';
+
+action network GET_ALL_USERS(url = usersUrl, method = GET);
+action network UPDATE_USER(url = '/users/:uuid', method = PUT);
+
+action counter INCREMENT_COUNTER();
+
+action toggle TOGGLE_LOGIN_MODAL_OPEN();
+action toggle TOGGLE_SIGNUP_MODAL_OPEN();
+
+action toggle TOGGLE_SIGNED_IN();
+
+action stub STUB_ACTION();
+
+flow POSTS {
+    array posts = [];
+    GET_ALL_POSTS >> posts;
+    DELETE_ALL_POSTS >> posts;
+}
+
+flow USERS {
+    array users = [];
+    GET_ALL_USERS >> users;
+    UPDATE_USER >> users;
+}
+
+flow COUNTER {
+    number count = 0;
+    INCREMENT_COUNTER >> count;
+}
+
+flow MODALS {
+    boolean isLoginModalOpen = false;
+    boolean isSignupModalOpen = false;
+    TOGGLE_LOGIN_MODAL_OPEN >> isLoginModalOpen;
+    TOGGLE_SIGNUP_MODAL_OPEN >> isSignupModalOpen;
+}
+
+flow ME {
+    boolean isSignedIn = false;
+    TOGGLE_SIGNED_IN >> isSignedIn;
+}
+
+flow MY_FUN_STUB_FLOW {
+    any shit;
+    STUB_ACTION;
+}
+
